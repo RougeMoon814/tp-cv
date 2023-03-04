@@ -1,0 +1,604 @@
+:root {
+    --light-theme-light-6: aliceblue;
+    --light-theme-light-5: lightcyan;
+    --light-theme-light-4: paleturquoise;
+    --light-theme-light-3: powderblue;
+    --light-theme-light-2: darkturquoise;
+    --light-theme-light-1: lightseagreen;
+    --light-theme-med: cadetblue;
+    --light-theme-dark-1: darkcyan;
+    --light-theme-dark-2: teal;
+    --light-theme-dark-3: darkslategray;
+}
+
+* {
+    box-sizing: border-box
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: gainsboro;
+    /* The Background color on the sides. Should be a neutral color (or maybe a subtle background image). */
+    overflow-x: hidden;
+}
+/* All page is inside this container so background color can be appreciated */
+.content {
+    margin: 0.2rem 0.4rem;
+    /* The margin on the actual page content (allows the background color to be visible) */
+    border-radius: 10px;
+}
+
+a, link {
+    color: black;
+    text-decoration: none;
+}
+/* Standard links (will be used for disabled bc I overrided the normal ones with a:hover:not([disabled]) ) */
+a:hover, link:hover {
+    background-color: inherit;
+    color: rgba(100, 100, 100, 0.7);
+    cursor: default;
+    text-shadow: 0 1px 5px gray;
+}
+a:hover:not([disabled]), link:hover:not([disabled]) {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+    cursor: pointer;
+}
+
+/* Style the header */
+.header {
+    grid-area: header;
+    background: url('../img/leaves-5610361__340.png') var(--light-theme-dark-3);
+    padding: .5rem;
+    text-align: center;
+    font-size: 2rem;
+    object-position: top;
+    background-repeat: repeat-x;
+    object-fit: fill;
+    color: var(--light-theme-light-4);
+    text-shadow: 0 0 35px black;
+    height: 10rem;
+}
+
+
+
+/* Navbar */
+.navbar-top {
+    grid-area: navbar-top;
+    background-color: var(--light-theme-med);
+    padding: 0 20px;
+    padding-right: 25px;
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-items: end;
+    justify-content: space-between;
+}
+
+/* LOGO del Navbar */
+.navbar-top img {
+    width: 80px;
+    border-radius: 50%;
+    border: 5px solid var(--light-theme-dark-2);
+    position: absolute;
+    float: left;
+    margin-top: -40px;
+    /* margin-left: 20px;
+    margin-right: 500px; */
+    transition: border .1s ease, width .1 ease;
+}
+/* El logo tiene 2 imagenes. Voy a cambiarlas cuando el usuario haga hover */
+.navbar-top #logo img:first-child {
+    visibility: visible;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.navbar-top #logo img:nth-child(2) {
+    visibility: hidden;
+}
+/* LOGO del Navbar (Hover) */
+.navbar-top #logo:hover img:first-child, .navbar-top #logo:active img:first-child {
+    visibility: hidden;
+}
+.navbar-top #logo:hover img:nth-child(2), .navbar-top #logo:active img:nth-child(2) {
+    visibility: visible;
+    border: 5px solid var(--light-theme-light-1);
+    outline: solid var(--light-theme-dark-2);
+    outline-width: 2px;
+    outline-offset: -1px;;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Links del Navbar */
+.navbar-top .link-block {
+    padding: 0;
+    font-weight: bold;
+    margin: 0;
+    transition: background-color .5s ease;
+    text-align: center;
+    display: flex;
+}
+/* Links del Navbar (Links) */
+.navbar-top .link-block a {
+    color: black;
+    text-decoration: none;
+    width: 50%;
+    padding: 20px 35px;
+    margin: 0;
+}
+.navbar-top .link-block a:hover {
+    background-color: var(--light-theme-dark-2);
+    color: aliceblue;
+}
+
+/* The grid container */
+.grid-container {
+    display: grid;
+    
+    grid-template-areas:
+        'header header header header header header'
+        'navbar-top navbar-top navbar-top navbar-top navbar-top navbar-top'
+        'empty-a middle middle middle right empty-b'
+        'empty-a middle middle middle more empty-b'
+        'empty-a middle middle middle empty-c empty-b'
+        'footer footer footer footer footer footer';
+    gap: 10px; 
+    grid-template-columns: 1fr repeat(3, 1fr) 220px 1fr;
+    grid-template-rows: auto auto 13rem auto 1fr auto;
+}
+
+.left,
+.middle,
+.right, 
+.more {
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Style the left column */
+.empty-a {
+    grid-area: empty-a;
+    max-width: 10%;
+    width: 1fr;
+}
+.empty-b {
+    grid-area: empty-b;
+    max-width: 10%;
+    width: 1fr;
+}
+.empty-c {
+    grid-area: empty-c;
+    /* max-width: 5rem; */
+    width: 1fr;
+    height: 1fr;
+}
+
+
+
+/* Style the middle column (CV) */
+.middle {
+    background-color: var(--light-theme-light-6);
+    grid-area: middle;
+    min-width: 740px;/* 
+    width: 50vw; */
+    padding-top: 0;
+    margin-top: 0;
+    height: 100%;
+}
+
+/* CURRICULUM VITAE / PORTFOLIO */
+.cv {
+    display:flex;
+    justify-content: space-between;
+    
+}
+.subtitle-cv {
+    text-align: center;
+}
+.subtitle-cv img {
+    margin-top: .5rem;
+    border-radius: 50%;
+    background: linear-gradient(to right, hsl(0, 14%, 89%), hsl(0, 18%, 65%) );
+    object-fit: cover;
+    object-position: 0 15px; /* La img quedaba muy centrada. Se veia el borde horizontal de abajo. Con esto hice ue la imagen "bajara" y quedara mejor. */
+}
+.cv #cv-column-left {
+    width: 37%;
+    height: auto;
+    padding-top: 0.2rem;
+    background: linear-gradient(215deg, var(--light-theme-light-4), var(--light-theme-med));
+}
+.cv #cv-column-left h2, .cv #cv-column-left h3 {
+    text-align: center;
+    align-self: center;
+    margin: auto 0;
+}
+.cv #cv-column-left img {
+    width: 90%;
+    max-width: 48vw;
+}
+.cv #cv-column-right {
+    width: 63%;
+    height: 100%;
+    padding-right: .5rem;
+}
+.separador-cv-color {
+    border-top: 0px solid var(--light-theme-light-6);
+    display: none;
+    width: 50%;
+    padding: 2px 50px;
+    background: linear-gradient(215deg, var(--light-theme-light-4), var(--light-theme-med));
+}
+
+/* Style the right column */
+.right {
+    background-color: var(--light-theme-light-5);
+    grid-area: right;
+    width: 210px;
+    text-align: right;
+    padding: 5px;
+    /* max-height: fit-content(100%); */
+}
+.right h1, .right h2, .right h3, .right h4, .right h5, .right h6 {
+    margin: 0.3rem 0rem;
+}
+.right a {
+    display: block;
+    padding: 0.3rem;
+}
+/* Not disabled links */
+.right a:hover:not([disabled]), .right link:hover:not([disabled]) {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+}
+
+.more {
+    grid-area: more;
+    background-color: var(--light-theme-light-4);
+    width: 210px;
+    text-align: center;
+    max-height: fit-content(100%);
+    height: 1fr;
+}
+.more img {
+    width: 48%;
+    height: auto;
+    padding: 2px;
+    background: linear-gradient(to bottom, var(--light-theme-light-5), white);
+    box-shadow: 1px 0 5px var(--light-theme-dark-1);
+    border-radius: 10%;
+    /* outline: 15px 0px 0px 0px solid white;
+    outline-offset: 5px 0px; */
+}
+.more img:hover {
+    outline: 2px solid var(--light-theme-dark-3);
+    background: linear-gradient(to bottom, transparent, var(--light-theme-light-6), white);
+    border-radius: 10%;
+}
+.more img:active {
+    outline: 2px solid var(--light-theme-dark-2);
+    background: linear-gradient(to top, transparent, var(--light-theme-light-6), white);
+    border-radius: 10%;
+    margin-bottom: -1px;
+}
+
+/* Style the footer */
+.footer {
+    grid-area: footer;
+    background-color: var(--light-theme-dark-3);
+    color: white;
+    padding: 0 2rem;
+    text-align: center;
+    padding-top: 8px;
+    margin-bottom: -27px;
+    height: 4rem;
+}
+.footer ul {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    list-style-type: none;
+    align-items: center;
+    padding-right: 5rem;
+}
+.footer a {
+    color: white;
+}
+.footer a:hover {
+    color: var(--light-theme-light-6);
+    text-decoration: underline;
+    /* font-style: italic; */
+    background: none;
+}
+
+/* Go to TOP button */
+#go-top {
+    position: fixed;
+    bottom: 22px;
+    right: 25px;
+    width: 30px;
+    height: 30px;
+    color:#000000;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.3rem;
+    text-shadow: .5px .5px black;
+    border: 2px solid var(--light-theme-dark-2);
+    padding: 0 2px 2px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, var(--light-theme-light-6), var(--light-theme-light-3));
+    
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+#go-top:hover {
+    width: 30px;
+    height: 30px;
+    color: var(--light-theme-light-6);
+    border: 2px solid var(--light-theme-light-3);
+    box-shadow: .1rem .1rem 0.3rem 0 var(--light-theme-dark-2); /* sombra derecha, sombra abajo, blureado, borde (gral cero), color (con tranparencia) */
+    font-weight: 900;
+    background: linear-gradient(to bottom, var(--light-theme-dark-1), black);
+}
+#go-top:active {
+    width: 30px;
+    height: 30px;
+    color: var(--light-theme-light-3);
+    border: 2px solid var(--light-theme-light-2);
+    box-shadow: .1rem .1rem 0.3rem 0 var(--light-theme-light-3); /* sombra derecha, sombra abajo, blureado, borde (gral cero), color (con tranparencia) */
+    font-weight: bolder;
+    background: linear-gradient(to bottom, black, var(--light-theme-dark-1));
+}
+
+.modal {display:none;}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 50;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#login-form .modal-content {
+    width: 30%;
+    min-height: 60%;
+}
+
+#more-big-img .modal-content {
+    width: 65%;
+    height: 60%;
+}
+#more-big-img .modal-content img {
+    height: 100%;
+}
+
+/* Responsive. Makes some columns from the main content to stack on top of achother. (Tablet Width) */
+@media (max-width: 990px) {
+
+    .grid-container {
+        grid-template-areas:
+            'header header header header header header'
+            'navbar-top navbar-top navbar-top navbar-top navbar-top navbar-top'
+            'right right right right right right'
+            'empty-a middle middle middle middle empty-b'
+            'more more more more more more'
+            'footer footer footer footer footer footer';
+        gap: 10px; 
+        grid-template-columns: 1fr repeat(4, 2fr) 1fr;
+        grid-template-rows: auto;
+        width: 100%;
+    }
+
+    .header, .navbar-top, .right, .more {
+        width: 100%;
+    }
+    .empty-c {
+        display: none;
+    }
+
+    .right {
+        display: flex;
+    }
+    .right ul {
+        flex-direction: row;
+    }
+
+    .more img {
+        width: 26%;
+    }
+        
+    /* Style the middle column (CV) */
+    .middle {
+        min-width: 670px;
+        /* 
+        width: 50vw; */
+    }
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other (Mobile width) */
+@media (max-width: 720px) {
+    .content {
+        margin: 0.2rem 0.4rem;
+        /* The margin on the actual page content (allows the background color to be visible) */
+        border-radius: 10px;
+    }
+    .content .empty-a, .content .empty-b {
+        margin: 0;
+        padding: 0;
+        width: none;
+    }
+    .header {
+    font-size: 1.5rem;
+    }
+    .navbar-top {
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        
+    }
+    .navbar-top .link-block {
+        flex-direction: column;
+        width: 100%;
+    }
+    .navbar-top .link-block a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 8px 15px;
+    }
+    /* The second child is the first link (the first child would be the Logo) */
+    .navbar-top .link-block:nth-child(2) {
+        margin-top: 60px;
+        /* Had to put margin bc img absolute positioning made it float on top of links */
+    }
+    .navbar-top img {
+        width: 60px;
+        position: absolute; /* Img had to become absolute (from relative bc it did weird things with the double img Logo) */
+        display: block;
+        min-width: 20px;
+        margin: 5px 5px;
+        margin-left: -30px;
+        
+        border-radius: 50%;
+    }
+
+    .grid-container {
+        grid-template-areas:
+            'header header header header header header'
+            'navbar-top navbar-top navbar-top navbar-top navbar-top navbar-top'
+            'right right right right right right'
+            'middle middle middle middle middle middle'
+            'more more more more more more'
+            'footer footer footer footer footer footer';
+            grid-template-columns: 1fr;
+        grid-gap: 10px 2px; /* - if you want gap between the columns */
+        margin: 5px 5px;
+    }
+    
+    .left, .middle, .right, .more {
+    min-height: auto;
+    width: 100%;
+}
+    
+    .middle {
+        width: 100%;
+        min-width: 100%;
+        /* border: 5px solid var(--light-theme-light-1); */
+        outline-offset: -10px;
+        outline: 5px solid var(--light-theme-light-2);
+    }
+
+    .cv {
+        flex-direction: column;
+    }
+    .cv #cv-column-left {
+        width: 100%;
+        background: inherit;
+    }
+    .cv #cv-column-right {
+        width: 100%;
+    }
+    .separador-cv-color {
+        display: block;
+    }
+    .subtitle-cv img {
+        max-width: 60vw;
+        height: auto;
+    }
+
+
+    .right::before {
+        content: "Poner menu en forma horizontal";
+    }
+    .right img {
+        position: static;
+        object-fit: cover;
+        display: block;
+        float: none;
+        width: 100%;
+        border-radius: 5%;
+        right: auto;
+        margin: 8px 0;
+    }
+    .right img:hover, .right img:active {
+        position: static;
+        object-fit: cover;
+        display: block;
+        float: none;
+        width: 100%;
+        border-radius: 5%;
+        right: auto;
+        margin: 8px 0;
+    }
+
+    .more img {
+        width: 30%;
+    }
+
+    .footer {
+    margin-bottom: -20px;
+    text-align: center;
+    
+    }
+    .footer ul {
+        padding: 0 0.1rem;
+        justify-content: space-between;
+    }
+
+    /* .footer ul li {
+    min-width: 40%;
+    } */
+    .footer ul li:last-child {
+        /* align-self: right; */
+        margin-right: 1.8rem;
+        }
+
+}
