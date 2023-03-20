@@ -50,7 +50,7 @@ a:hover:not([disabled]), link:hover:not([disabled]) {
 /* Style the header */
 .header {
     grid-area: header;
-    background: url('img/leaves.png') var(--light-theme-dark-3);
+    background: url('../img/leaves.png') var(--light-theme-dark-3);
     padding: .5rem;
     text-align: center;
     font-size: 2rem;
